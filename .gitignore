@@ -1,0 +1,9 @@
+/*.env
+/*.idea
+*.venv
+/venv
+*.txt
+*.json
+
+!requirements.txt
+
