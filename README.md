@@ -34,9 +34,9 @@ id of the project `GOOGLE_PROJECT_ID`
 All keys are stored in the `.env` file which is: 
 ```
 ├── .env
-└── tg_bot.py
-    vk_bot.py
-    intent.py
+├──  tg_bot.py
+├──  vk_bot.py
+└── intent.py
 ```
 
 In the `.env` file, the keys are written as follows:
@@ -45,7 +45,6 @@ In the `.env` file, the keys are written as follows:
 TELEGRAM_TOKEN=[TOKEN]
 TELEGRAM_LOG_TOKEN=[TOKEN]
 TELEGRAM_LOG_CHAT_ID=[CHAT_ID]
-
 GOOGLE_PROJECT_ID=[PROJECT_ID]
 GOOGLE_APPLICATION_CREDENTIALS= path into json file
 VK_TOKEN=[TOKEN]
