@@ -65,9 +65,8 @@ if __name__ == '__main__':
     logger.addHandler(TelegramLogsHandler(tg_bot, tg_log_chat_id))
 
     tg_token = os.getenv('TELEGRAM_TOKEN')
-    project_id = os.getenv('GOOGLE_PROJECK_ID')
 
-    parser = create_parser(project_id)
+    parser = create_parser()
     args = parser.parse_args()
     project = args.project
 

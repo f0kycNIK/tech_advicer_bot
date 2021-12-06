@@ -51,10 +51,10 @@ def load_intents(project_id, file_questions):
 
 if __name__ == '__main__':
     load_dotenv()
-    project_id = os.getenv('GOOGLE_PROJECK_ID')
+
     file_path = 'questions.json'
 
-    parser = create_parser(project_id, file_path)
+    parser = create_parser(file_path)
     args = parser.parse_args()
     project = args.project
     file_questions = args.file

@@ -4,6 +4,6 @@
 /venv
 *.txt
 *.json
-
+*/.ogg
 !requirements.txt
 
