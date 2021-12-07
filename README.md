@@ -75,8 +75,8 @@ you can automatically load a template response in dialogflow from
 the path to the file
 
 ```python
->intent.py -p 'google project_id' -f 'path to file' 
->intent.py -project 'google project_id' --file 'path to file'
+>intent.py -f 'path to file' 
+>intent.py --file 'path to file'
 ```
 
 The file structure looks like this:
@@ -100,6 +100,14 @@ The file structure looks like this:
 ## Quick start
 For a quick start in the console, just specify the `bot` file with 
 `google project_id`.
+
+
+```python
+>tg_bot.py  
+>vk_bot.py  
+```
+
+Оr if you want to specify another `google cloud project` then:
 
 ```python
 >tg_bot.py -p 'google project_id' 
