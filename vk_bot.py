@@ -16,13 +16,6 @@ from telegram_log import TelegramLogsHandler
 logger = logging.getLogger('Logger')
 
 
-def get_answer(message, project_id, user_id):
-    answer_message, intent_flg = detect_intent_text(project_id, user_id,
-                                                    message, 'ru')
-    if not intent_flg:
-        return answer_message
-
-
 def send_message(vk_api, event, message):
     if event.from_user:
         vk_api.messages.send(
@@ -45,10 +38,13 @@ def start_bot(longpoll, vk_api, project_id):
             for event in longpoll.listen():
                 if event.type == VkEventType.MESSAGE_NEW and event.to_me:
                     message = event.message
-                    answer_message = get_answer(message, project_id,
-                                                event.user_id)
-                    if answer_message:
-                        send_message(vk_api, event, answer_message)
+                    user_id = event.user_id
+                    answer, intent_flag = detect_intent_text(project_id,
+                                                             user_id,
+                                                             message,
+                                                             'ru')
+                    if not intent_flag:
+                        send_message(vk_api, event, answer)
         except requests.exceptions.ConnectionError:
             time.sleep(60)
         except Exception:
