@@ -1,5 +1,6 @@
 from google.cloud import dialogflow
 
+
 def detect_intent_text(project_id, session_id, texts, language_code):
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
@@ -9,4 +10,5 @@ def detect_intent_text(project_id, session_id, texts, language_code):
         request={"session": session, "query_input": query_input}
     )
     answer = response.query_result.fulfillment_text
-    return answer
+    intent_flag = response.query_result.intent.is_fallback
+    return answer, intent_flag

@@ -17,9 +17,10 @@ logger = logging.getLogger('Logger')
 
 
 def get_answer(message, project_id, user_id):
-    answer_message = detect_intent_text(project_id, user_id,
-                                        message, 'ru')
-    return answer_message
+    answer_message, intent_flg = detect_intent_text(project_id, user_id,
+                                                    message, 'ru')
+    if not intent_flg:
+        return answer_message
 
 
 def send_message(vk_api, event, message):

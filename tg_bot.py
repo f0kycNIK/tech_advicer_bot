@@ -29,8 +29,8 @@ def start(update: Update, context: CallbackContext):
 def send_message(update: Update, context: CallbackContext, project):
     chat_id = update.message['chat']['id']
     project_id = project
-    answer_message = detect_intent_text(project_id, chat_id,
-                                        update.message.text, 'ru')
+    answer_message, intent_flag = detect_intent_text(project_id, chat_id,
+                                                     update.message.text, 'ru')
     update.message.reply_text(answer_message)
 
 
