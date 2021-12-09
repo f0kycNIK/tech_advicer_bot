@@ -46,8 +46,9 @@ TELEGRAM_TOKEN=[TOKEN]
 TELEGRAM_LOG_TOKEN=[TOKEN]
 TELEGRAM_LOG_CHAT_ID=[CHAT_ID]
 GOOGLE_PROJECT_ID=[PROJECT_ID]
-GOOGLE_APPLICATION_CREDENTIALS= path into json file
+GOOGLE_APPLICATION_CREDENTIALS=path into json file
 VK_TOKEN=[TOKEN]
+INTENT_FILE=path to json file with dummy response templates
 ```
 
 To extract keys from `.env` file use:
@@ -75,8 +76,7 @@ you can automatically load a template response in dialogflow from
 the path to the file
 
 ```python
->intent.py -f 'path to file' 
->intent.py --file 'path to file'
+>intent.py
 ```
 
 The file structure looks like this:
@@ -101,22 +101,11 @@ The file structure looks like this:
 For a quick start in the console, just specify the `bot` file with 
 `google project_id`.
 
-
 ```python
 >tg_bot.py  
 >vk_bot.py  
 ```
 
-Оr if you want to specify another `google cloud project` then:
-
-```python
->tg_bot.py -p 'google project_id' 
->tg_bot.py --project 'google project_id'
-```
-```python
->vk_bot.py -p 'google project_id'  
->vk_bot.py --project 'google project_id'
-```
 ## Project Goals
 The code is written for educational purposes on online-course for 
 web-developers [dvmn.org](https://dvmn.org).

@@ -9,7 +9,6 @@ import vk_api
 from dotenv import load_dotenv
 from vk_api.longpoll import VkEventType, VkLongPoll
 
-from parser_commands import create_parser
 from dialogflow import detect_intent_text
 from telegram_log import TelegramLogsHandler
 
@@ -56,17 +55,16 @@ if __name__ == "__main__":
 
     tg_log_token = os.getenv('TELEGRAM_LOG_TOKEN')
     tg_log_chat_id = os.getenv('TELEGRAM_LOG_CHAT_ID')
+    project_id = os.getenv('GOOGLE_PROJECK_ID')
+    vk_token = os.getenv('VK_TOKEN')
+
     tg_bot = telegram.Bot(token=tg_log_token)
 
     logger.setLevel(logging.INFO)
     logger.addHandler(TelegramLogsHandler(tg_bot, tg_log_chat_id))
 
-    parser = create_parser()
-    args = parser.parse_args()
-    project = args.project
-
-    vk_token = os.getenv('VK_TOKEN')
     vk_session = vk_api.VkApi(token=vk_token)
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
-    start_bot(longpoll, vk_api, project)
+
+    start_bot(longpoll, vk_api, project_id)

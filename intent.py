@@ -4,8 +4,6 @@ import os
 from dotenv import load_dotenv
 from google.cloud import dialogflow
 
-from parser_commands import create_parser
-
 
 def create_intent(project_id, display_name, training_phrases_parts,
                   message_texts):
@@ -52,11 +50,7 @@ def load_intents(project_id, file_questions):
 if __name__ == '__main__':
     load_dotenv()
 
-    file_path = 'questions.json'
+    file = os.getenv('INTENT_FILE')
+    project = os.getenv('GOOGLE_PROJECK_ID')
 
-    parser = create_parser(file_path)
-    args = parser.parse_args()
-    project = args.project
-    file_questions = args.file
-
-    load_intents(project, file_questions)
+    load_intents(project, file)

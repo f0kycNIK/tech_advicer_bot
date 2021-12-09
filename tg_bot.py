@@ -6,12 +6,10 @@ from functools import partial
 import requests
 import telegram
 from dotenv import load_dotenv
-
 from telegram import ForceReply, Update
 from telegram.ext import (CallbackContext, CommandHandler, Filters,
                           MessageHandler, Updater)
 
-from parser_commands import create_parser
 from dialogflow import detect_intent_text
 from telegram_log import TelegramLogsHandler
 
@@ -28,8 +26,7 @@ def start(update: Update, context: CallbackContext):
 
 def send_message(update: Update, context: CallbackContext, project):
     chat_id = update.message['chat']['id']
-    project_id = project
-    answer_message, intent_flag = detect_intent_text(project_id, chat_id,
+    answer_message, intent_flag = detect_intent_text(project, chat_id,
                                                      update.message.text, 'ru')
     update.message.reply_text(answer_message)
 
@@ -59,15 +56,12 @@ if __name__ == '__main__':
 
     tg_log_token = os.getenv('TELEGRAM_LOG_TOKEN')
     tg_log_chat_id = os.getenv('TELEGRAM_LOG_CHAT_ID')
+    tg_token = os.getenv('TELEGRAM_TOKEN')
+    project_id = os.getenv('GOOGLE_PROJECK_ID')
+
     tg_bot = telegram.Bot(token=tg_log_token)
 
     logger.setLevel(logging.INFO)
     logger.addHandler(TelegramLogsHandler(tg_bot, tg_log_chat_id))
 
-    tg_token = os.getenv('TELEGRAM_TOKEN')
-
-    parser = create_parser()
-    args = parser.parse_args()
-    project = args.project
-
-    start_bot(tg_token, project)
+    start_bot(tg_token, project_id)
